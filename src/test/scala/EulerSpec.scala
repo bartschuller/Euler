@@ -17,6 +17,13 @@ class EulerSpec extends Specification { def is =
                                                                         endp^
   "2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder." ^
     "What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?" ! e5^
+                                                                        endp^
+  "The sum of the squares of the first ten natural numbers is,"         ^
+    "1^2 + 2^2 + ... + 10^2 = 385"                                         ^ bt^ bt^
+  "The square of the sum of the first ten natural numbers is,"          ^
+    "(1 + 2 + ... + 10)^2 = 55^2 = 3025"                                  ^ bt^ bt^
+  "Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640." ^ bt^
+    "Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum." ! e6^
                                                                         end
 
   import Euler._
@@ -26,5 +33,5 @@ class EulerSpec extends Specification { def is =
   def e3 = euler3 === 6857
   def e4 = euler4 === 906609
   def e5 = euler5 === 232792560
-
+  def e6 = euler6 === 25164150
 }

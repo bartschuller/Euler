@@ -71,4 +71,6 @@ object Euler {
     }
     fm.getP0wedList.foldLeft(1L)(_*_)
   }
+
+  def euler6 = pow((1 to 100).sum,2) - (1 to 100).map(pow(_, 2)).sum
 }
