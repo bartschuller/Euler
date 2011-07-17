@@ -17,23 +17,27 @@ object Euler {
   def fib_iterator = Iterator.iterate((1L,2L))(p => (p._2, p._1+p._2)).map(_._1)
   def euler2 = fib_iterator.takeWhile(_ < 4000000).filter(_ % 2 == 0).sum
 
-  def factors(n: Long) = {
-    var primes = List[Long]()
+  def factorsWithExponents(n: Long) = {
+    var primes = List[(Long, Int)]()
     var c = n
     var p = 2L
     while (p < c) {
+      var e = 0
       if (c % p == 0) {
-        primes = p :: primes
         do {
           c = c / p
+          e += 1
         } while (c % p == 0)
+        primes = (p, e) :: primes
       }
       p += 1
     }
     if (c != 1)
-      primes = p :: primes
+      primes = (p, 1) :: primes
     primes
   }
+
+  def factors(n: Long) = factorsWithExponents(n).map(_._1)
 
   def euler3 = factors(600851475143L).max
 
@@ -46,5 +50,25 @@ object Euler {
       if p.toString == r
     } yield p
     pals.max
+  }
+
+  def pow(n: Long, e: Int) = BigInt(n).pow(e).toLong
+
+  class FactorMap(impl: Map[Long,Int] = Map[Long,Int]()) {
+    def add(t: (Long,Int)) = t match {
+      case (f, e) => new FactorMap(impl + ( (f, e max impl.getOrElse(f, 0)) ))
+    }
+
+    def getP0wedList = impl.map(p => pow(p._1, p._2))
+  }
+
+  def euler5 = {
+    var fm = new FactorMap
+    for (i <- 20 to 1 by -1) {
+      factorsWithExponents(i).foreach { pair =>
+        fm = fm.add(pair)
+      }
+    }
+    fm.getP0wedList.foldLeft(1L)(_*_)
   }
 }
