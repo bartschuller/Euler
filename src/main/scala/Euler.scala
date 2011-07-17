@@ -56,7 +56,7 @@ object Euler {
 
   class FactorMap(impl: Map[Long,Int] = Map[Long,Int]()) {
     def add(t: (Long,Int)) = t match {
-      case (f, e) => new FactorMap(impl + ( (f, e max impl.getOrElse(f, 0)) ))
+      case (f, e) => new FactorMap(impl updated (f, e max impl.getOrElse(f, 0)) )
     }
 
     def getP0wedList = impl.map(p => pow(p._1, p._2))
@@ -73,4 +73,12 @@ object Euler {
   }
 
   def euler6 = pow((1 to 100).sum,2) - (1 to 100).map(pow(_, 2)).sum
+
+  def isPrime(ps: Stream[Long], n: Long): Boolean = {
+    ps.takeWhile(p => p*p <= n).foldLeft(true)((a,p) => a && n % p != 0)
+  }
+  val primes: Stream[Long] = 2L #:: Stream.iterate(3L)(_+2).filter(isPrime(primes, _))
+  def isPrime(n: Long): Boolean = isPrime(primes, n)
+
+  def euler7 = primes(10000) // 0-based index
 }
