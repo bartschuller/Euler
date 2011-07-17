@@ -12,7 +12,8 @@ object Euler {
     fibs(n)._1
   }
 
-  def euler2 = Iterator.iterate((1L,2L))(p => (p._2, p._1+p._2)).map(_._1).takeWhile(_ < 4000000).filter(_ % 2 == 0).sum
+  def fib_iterator = Iterator.iterate((1L,2L))(p => (p._2, p._1+p._2)).map(_._1)
+  def euler2 = fib_iterator.takeWhile(_ < 4000000).filter(_ % 2 == 0).sum
 
   
 }
