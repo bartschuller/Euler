@@ -115,4 +115,6 @@ object Euler {
            c = 1000 - a - b if c*c == a*a + b*b } yield a*b*c
     ans.head
   }
+
+  def euler10 = primes takeWhile(_ < 2000000) sum
 }

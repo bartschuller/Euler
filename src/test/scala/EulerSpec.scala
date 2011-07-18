@@ -36,6 +36,9 @@ class EulerSpec extends Specification { def is =
   "For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2."                         ^ p^
   "There exists exactly one Pythagorean triplet for which a + b + c = 1000." ^ bt^
     "Find the product abc."                                             ! e9^
+                                                                        endp^
+  "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17."               ^
+    "Find the sum of all the primes below two million."                 ! e10^
                                                                         end
 
   import Euler._
@@ -49,4 +52,5 @@ class EulerSpec extends Specification { def is =
   def e7 = euler7 === 104743
   def e8 = euler8 === 40824
   def e9 = euler9 === 31875000
+  def e10 = euler10 === 142913828922L
 }
