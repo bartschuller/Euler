@@ -107,4 +107,12 @@ object Euler {
 """.trim()
     """\s+""".r.split(theString).mkString.sliding(5).map(_.map(_.toString.toInt).product).max
   }
+
+  def euler9 = {
+    val ans =
+      for {b <- 2 to 1000
+           a <- 1 to b
+           c = 1000 - a - b if c*c == a*a + b*b } yield a*b*c
+    ans.head
+  }
 }
