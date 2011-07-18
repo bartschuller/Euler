@@ -27,6 +27,9 @@ class EulerSpec extends Specification { def is =
                                                                         endp^
   "By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13." ^
     "What is the 10001st prime number?"                                 ! e7^
+                                                                        endp^
+  "Find the greatest product of five consecutive digits in the 1000-digit number." ^
+    "731…450"                                                           ! e8^
                                                                         end
 
   import Euler._
@@ -38,4 +41,5 @@ class EulerSpec extends Specification { def is =
   def e5 = euler5 === 232792560
   def e6 = euler6 === 25164150
   def e7 = euler7 === 104743
+  def e8 = euler8 === 40824
 }
