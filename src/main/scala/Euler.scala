@@ -266,4 +266,23 @@ object Euler {
 """.trim()
     "\\s+".r.split(theString).map(BigInt(_)).sum.toString.substring(0,10)
   }
+
+  def euler14 = {
+    val chainLengths = new Array[Int](1000000)
+    def nextInChain(n: Long) = if (n%2 == 0) n/2 else 3*n+1
+    def chainLength(n: Long): Int = {
+      if (n == 1L)
+        1
+      else
+        if (n < 1000000L && chainLengths(n.toInt) > 0)
+          chainLengths(n.toInt)
+        else {
+          val l = 1 + chainLength(nextInChain(n))
+          if (n < 1000000L)
+            chainLengths(n.toInt) = l
+          l
+        }
+    }
+    (1L until 1000000L).map(n=>(n,chainLength(n))).foldLeft((0L,0))((curMax,p)=> if (p._2>curMax._2) p else curMax)._1
+  }
 }
