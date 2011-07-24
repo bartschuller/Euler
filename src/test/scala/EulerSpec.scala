@@ -46,6 +46,8 @@ class EulerSpec extends Specification with Tags { def is = args(exclude="slow")^
   "What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 20×20 grid?" ! e11 ^
                                                                         endp^
   "What is the value of the first triangle number to have over five hundred divisors?" ! e12^
+                                                                        endp^
+  "Work out the first ten digits of the sum of the following one-hundred 50-digit numbers." ! e13^
                                                                         end
 
   import Euler._
@@ -62,4 +64,5 @@ class EulerSpec extends Specification with Tags { def is = args(exclude="slow")^
   def e10 = euler10 === 142913828922L
   def e11 = euler11 === 70600674
   def e12 = euler12 === 76576500
+  def e13 = euler13 === "5537376230"
 }
