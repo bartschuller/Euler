@@ -17,7 +17,7 @@ object Euler {
   def fib_iterator = Iterator.iterate((1L,2L))(p => (p._2, p._1+p._2)).map(_._1)
   def euler2 = fib_iterator.takeWhile(_ < 4000000).filter(_ % 2 == 0).sum
 
-  def factorsWithExponents(n: Long) = {
+  def primeFactorsWithExponents(n: Long) = {
     var primes = List[(Long, Int)]()
     var c = n
     var p = 2L
@@ -37,9 +37,9 @@ object Euler {
     primes
   }
 
-  def factors(n: Long) = factorsWithExponents(n).map(_._1)
+  def primeFactors(n: Long) = primeFactorsWithExponents(n).map(_._1)
 
-  def euler3 = factors(600851475143L).max
+  def euler3 = primeFactors(600851475143L).max
 
   def euler4 = {
     val pals = for {
@@ -65,7 +65,7 @@ object Euler {
   def euler5 = {
     var fm = new FactorMap
     for (i <- 20 to 1 by -1) {
-      factorsWithExponents(i).foreach { pair =>
+      primeFactorsWithExponents(i).foreach { pair =>
         fm = fm.add(pair)
       }
     }
@@ -154,4 +154,10 @@ object Euler {
     val m = Matrix.fromString(theString)
     m.directions.flatMap(_.sliding(4)).map(_.product).max
   }
+
+  def triangleNumbers = Iterator.iterate((1,1))((p =>(p._1+1,p._1+p._2+1))).map(_._2)
+
+  def numFactors(n: Long) = primeFactorsWithExponents(n).map(_._2+1).product
+
+  def euler12 = triangleNumbers find(numFactors(_) > 500) get
 }
