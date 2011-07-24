@@ -43,7 +43,7 @@ class EulerSpec extends Specification with Tags { def is = args(exclude="slow")^
                                                                         endp^
   "In the 20×20 grid below, four numbers along a diagonal line have been marked in red." ^ bt^
   "The product of these numbers is 26 × 63 × 78 × 14 = 1788696."        ^
-  "What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 20×20 grid?" ^
+  "What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 20×20 grid?" ! e11 ^
                                                                         end
 
   import Euler._
@@ -58,4 +58,5 @@ class EulerSpec extends Specification with Tags { def is = args(exclude="slow")^
   def e8 = euler8 === 40824
   def e9 = euler9 === 31875000
   def e10 = euler10 === 142913828922L
+  def e11 = euler11 === 70600674
 }
