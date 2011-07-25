@@ -50,6 +50,8 @@ class EulerSpec extends Specification with Tags { def is = args(exclude="slow")^
   "Work out the first ten digits of the sum of the following one-hundred 50-digit numbers." ! e13^
                                                                         endp^
   "Which starting number, under one million, produces the longest chain?" ! e14^
+                                                                        endp^
+  "How many routes are there through a 20×20 grid?"                     ! e15^
                                                                         end
 
   import Euler._
@@ -68,4 +70,5 @@ class EulerSpec extends Specification with Tags { def is = args(exclude="slow")^
   def e12 = euler12 === 76576500
   def e13 = euler13 === "5537376230"
   def e14 = euler14 === 837799
+  def e15 = euler15 === 137846528820L
 }

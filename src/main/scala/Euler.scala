@@ -285,4 +285,24 @@ object Euler {
     }
     (1L until 1000000L).map(n=>(n,chainLength(n))).foldLeft((0L,0))((curMax,p)=> if (p._2>curMax._2) p else curMax)._1
   }
+
+  def euler15 = {
+    val gr = new Array[Array[Long]](21)
+    (0 to 20) foreach {gr(_) = new Array[Long](21)}
+
+    def gridRoutes(n: Int, m: Int): Long = {
+      if (gr(n)(m) > 0) gr(n)(m) else {
+        val v =
+          (if (n <= m) (n, m) else (m, n)) match {
+            case (0, _) => 1L
+            case (1, j) => j+1L
+            case (i, j) => gridRoutes(i, j-1) + gridRoutes(i-1,j)
+          }
+        gr(n)(m) = v
+        v
+      }
+    }
+
+    gridRoutes(20,20)
+  }
 }
